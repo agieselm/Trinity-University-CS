@@ -1,0 +1,30 @@
+--TOPICS ON FINAL
+
+Final is cummulative
+|
+|
+ ---> there will be recursion, high-order funcs, pattern matching, etc etc
+
+-IO Monad will be on there, study our game
+-There will be a couple of "starred" problems on the final that are intended but not necessarily only to be solved with recursion
+-There will be one very big problem that we are intended to decompose into several helper functions and explain how to do them with bullet points or code
+-We won't write modules, type classes, or data types, but will need to be able to read them. 
+-Know dem BST's dawg
+
+
+--examples
+
+
+-example IO problem
+printList :: Show a => [a] => IO ()
+sequence $ map (putStrLn . Show)
+
+printList :: Show a => [(bool, a)] => IO ()
+printList ((False, _):xs) = printList xs
+printList ((True, x):xs) = do
+                             putStrLn (Show x)
+                             printList xs
+printList ([]) = return ()
+
+
+

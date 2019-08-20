@@ -1,0 +1,81 @@
+Type Aliases
+--1 case of data
+--clarify type signatures
+--make changes easier
+
+Algebraic Data
+--many case
+--defined in 1 location
+--everything is boxed (Int 7)
+--function defined in 1 location
+
+Type Classes
+--Many cases
+--defined accross multiple files
+--No boxing
+--overhead conceptually efficent 
+--cases distinct by type
+--functions either:
+    1) 1 location - if generic
+    2) in class - if case specific
+
+
+
+STACKS
+--type alias:
+   type stack a = (Integer, [a]
+   peek(size, (top:rest)) = top
+--or data type
+   data Stack a = Stack Integer [a]
+   peek(Stack size(top:rest)) = top
+
+CONTAINERS. you can add and remove objects from a container, but have no guarantee in order.
+
+--a student has a name, an id, a list of taken courses, and is either a declared major or undeclared.
+
+data Student Declared String String [String] String
+
+type ID = String
+type Course = String
+type Major = String
+data Student = Declared String ID [Course] Major | Undeclared String ID [Course]
+...or...
+data Student String ID [Course] (Maybe Major)
+
+**prefer the maybe version, as students are more similar than different**
+
+
+--An electronic thing might be a powered device with an input voltage, socket type, amperage, and a power consumption, or might be a battery powered device with a battery type and a power consumption.
+
+type Socket = String
+-------type Battery = String
+or
+-------data Battery = AA | AAA | D | 9V | C
+data Electronic = SocketPow Double Socket Double Double | BatteryPow Battery Double
+data Electronic = Electronic Maybe (Double, Socket, Double) Double (Maybe Battery)
+
+**prefer the disjoing case versio, as electronics are more different than similar, and it isn't just extra information inonen case.
+
+data Powered = BySocket Double Double Socket | ByBatter Battery Double
+data Electronic = Elec Double Powered
+
+
+
+Abstract Data:
+ -If 1 case {
+    small - type alias
+    big - data Type with 1 constructor
+  } else if many Cases {
+    1 idea - data type
+    property of - type class 
+       objects AND  will come up again 
+
+
+
+
+
+
+
+
+
+
